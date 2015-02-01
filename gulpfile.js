@@ -6,9 +6,14 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var livereload = require('gulp-livereload');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  client: [
+      './www/index.html',
+      './www/templates/*.html'
+  ]
 };
 
 gulp.task('default', ['sass']);
@@ -26,7 +31,15 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
+  gulp.watch([paths.sass], ['sass']);
+});
+
+gulp.task('livereload', function() {
+    livereload.listen();
+    var server = livereload();
+    return gulp.watch(paths.client, function(event) {
+        server.changed(event.path);
+    });
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -48,3 +61,5 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
+
+gulp.task('develop', ['watch', 'livereload']);
