@@ -5,45 +5,40 @@
   The Friends service returns an array of friend data
 -->
 <ion-view view-title="{{card.bank}}">
-  <div class="list">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-select">
+        <span class="input-label">Type</span>
+        <select>
+          <option>Blue</option>
+          <option selected>Green</option>
+          <option>Red</option>
+        </select>
+      </label>
 
-    <label class="item item-input item-stacked-label">
-      <span class="input-label">Type</span>
-      <select>
-        <option>Blue</option>
-        <option selected>Green</option>
-        <option>Red</option>
-      </select>
-    </label>
+      <label class="item item-input item-select">
+        <span class="input-label">Valid through</span>
+        <input type="date">
+      </label>
 
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Points</span>
+        <input type="number" placeholder="2000">
+      </label>
 
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Credit limit</span>
+        <input type="number" placeholder="5000">
+      </label>
 
-    <label class="item item-input item-stacked-label">
-      <span class="input-label">Valid through</span>
-      <input type="date" placeholder="09/30/2016">
-    </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Alian</span>
+        <input type="text" placeholder="Card 1">
+      </label>
 
-    <label class="item item-input item-stacked-label">
-      <span class="input-label">Points</span>
-    </label>
-    <div class="item range range-positive">
-      <i class="icon ion-ios7-sunny-outline"></i>
-      <input type="range" name="volume" min="0" max="100" value="53">
-      <i class="icon ion-ios7-sunny"></i>
+      <button class="button button-block button-positive">
+        Submit
+      </button>
     </div>
-
-    <label class="item item-input item-stacked-label">
-      <span class="input-label">Credit limit</span>
-    </label>
-    <div class="item range range-positive">
-      <i class="icon ion-ios7-sunny-outline"></i>
-      <input type="range" name="volume" min="0" max="100" value="33">
-      <i class="icon ion-ios7-sunny"></i>
-    </div>
-
-    <label class="item item-input item-stacked-label">
-      <span class="input-label">Alian</span>
-      <input type="text" placeholder="Card 1">
-    </label>
-  </div>
+    </ion-content>
 </ion-view>
