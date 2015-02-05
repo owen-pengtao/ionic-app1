@@ -1,0 +1,16 @@
+2015-02-04 21:03:15.277 rewardtracking[13399:5567197] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/tpeng/Library/Developer/CoreSimulator/Devices/D41809F8-80AA-46C0-8864-A79FDEFE6ECC/data/Containers/Data/Application/461DC4B9-17F1-4541-AE6C-039785A0B2CC/Library/Cookies/Cookies.binarycookies
+2015-02-04 21:03:15.527 rewardtracking[13399:5567197] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-04 21:03:15.527 rewardtracking[13399:5567197] Multi-tasking -> Device: YES, App: YES
+2015-02-04 21:03:15.541 rewardtracking[13399:5567197] Unlimited access to network resources
+2015-02-04 21:03:15.994 rewardtracking[13399:5567197] [CDVTimer][keyboard] 0.055015ms
+2015-02-04 21:03:15.994 rewardtracking[13399:5567197] [CDVTimer][TotalPluginStartup] 0.212014ms
+2015-02-04 21:03:16.712 rewardtracking[13399:5567197] Resetting plugins due to page load.
+2015-02-04 21:03:16.942 rewardtracking[13399:5567197] Finished load of: file:///Users/tpeng/Library/Developer/CoreSimulator/Devices/D41809F8-80AA-46C0-8864-A79FDEFE6ECC/data/Containers/Bundle/Application/2915E084-0B4B-4CA4-A1B8-90FF1F33C047/rewardtracking.app/www/index.html#/tab/dash
+2015-02-04 21:10:13.253 rewardtracking[15800:5575661] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/tpeng/Library/Developer/CoreSimulator/Devices/D41809F8-80AA-46C0-8864-A79FDEFE6ECC/data/Containers/Data/Application/363FADF5-A59D-49E3-BBC8-5D46CAB34B34/Library/Cookies/Cookies.binarycookies
+2015-02-04 21:10:13.360 rewardtracking[15800:5575661] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-04 21:10:13.360 rewardtracking[15800:5575661] Multi-tasking -> Device: YES, App: YES
+2015-02-04 21:10:13.361 rewardtracking[15800:5575661] Unlimited access to network resources
+2015-02-04 21:10:13.506 rewardtracking[15800:5575661] [CDVTimer][keyboard] 0.048041ms
+2015-02-04 21:10:13.506 rewardtracking[15800:5575661] [CDVTimer][TotalPluginStartup] 0.184000ms
+2015-02-04 21:10:13.548 rewardtracking[15800:5575661] Resetting plugins due to page load.
+2015-02-04 21:10:13.700 rewardtracking[15800:5575661] Finished load of: file:///Users/tpeng/Library/Developer/CoreSimulator/Devices/D41809F8-80AA-46C0-8864-A79FDEFE6ECC/data/Containers/Bundle/Application/44A42010-8F55-4D92-A988-95D8E0E95173/rewardtracking.app/www/index.html#/tab/home

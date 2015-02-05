@@ -1,0 +1,44 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{card.bank}}">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-select">
+        <span class="input-label">Type</span>
+        <select>
+          <option>Blue</option>
+          <option selected>Green</option>
+          <option>Red</option>
+        </select>
+      </label>
+
+      <label class="item item-input item-select">
+        <span class="input-label">Valid through</span>
+        <input type="date">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Points</span>
+        <input type="number" placeholder="2000">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Credit limit</span>
+        <input type="number" placeholder="5000">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Alian</span>
+        <input type="text" placeholder="Card 1">
+      </label>
+
+      <button class="button button-block button-positive">
+        Submit
+      </button>
+    </div>
+    </ion-content>
+</ion-view>
