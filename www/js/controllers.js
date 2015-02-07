@@ -1,14 +1,14 @@
 angular.module('starter.controllers', ['starter.services'])
 
-.controller('HomeCtrl', function($scope) {
+  .controller('HomeCtrl', function ($scope) {
     "use strict";
     $scope.isLogin = false;
 
-    $scope.doLogin = function(){
+    $scope.doLogin = function () {
     };
-    $scope.fbLogin = function() {
+    $scope.fbLogin = function () {
       openFB.login(
-        function(response) {
+        function (response) {
           if (response.status === 'connected') {
             console.log('Facebook login succeeded');
             $scope.isLogin = true;
@@ -19,48 +19,59 @@ angular.module('starter.controllers', ['starter.services'])
         },
         {scope: 'email,publish_actions'});
     };
-    $scope.fbLogout = function() {
+    $scope.fbLogout = function () {
       openFB.logout(
-        function() {
+        function () {
           $scope.isLogin = false;
         });
     };
-    $scope.getMe = function() {
+    $scope.getMe = function () {
       openFB.api({
         path: '/me',
         params: {fields: 'id,name'},
-        success: function(user) {
+        success: function (user) {
           $scope.isLogin = true;
-          $scope.$apply(function() {
+          $scope.$apply(function () {
             $scope.user = user;
           });
         }
       });
     };
     $scope.getMe();
-})
+  })
 
-.controller('CardsCtrl', function($scope, Cards) {
-  $scope.cards = Cards.all();
-  $scope.remove = function(card) {
-    Cards.remove(card);
-  }
-})
+  .controller('CardsCtrl', function ($scope, Cards, $state) {
+    $scope.cards = Cards.all();
+    $scope.remove = function (card) {
+      Cards.remove(card);
+    };
+    $scope.onTabSelected = function(){
+      $state.go("tab.cards");
+    };
+  })
 
-.controller('CardDetailCtrl', function($scope, $stateParams, Cards) {
-  $scope.card = Cards.get($stateParams.cardId);
-})
+  .controller('CardDetailCtrl', function ($scope, $stateParams, Cards, $state, $ionicNavBarDelegate) {
+    $scope.card = Cards.get($stateParams.cardId);
+    $scope.myCard = {};
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
+    $scope.addCard = function () {
+      var _card = angular.extend($scope.card, $scope.myCard);
+      Cards.add(_card);
+      $ionicNavBarDelegate.back();
+      $state.go("tab.friends");
+    };
+  })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
+  .controller('FriendsCtrl', function ($scope, Friends) {
+    $scope.friends = Friends.all();
+  })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+  .controller('FriendDetailCtrl', function ($scope, $stateParams, Friends) {
+    $scope.friend = Friends.get($stateParams.friendId);
+  })
+
+  .controller('AccountCtrl', function ($scope) {
+    $scope.settings = {
+      enableFriends: true
+    };
+  });

@@ -38,6 +38,9 @@ angular.module('starter.services', [])
         }
       }
       return null;
+    },
+    add: function(card) {
+      console.log(card);
     }
   }
 })

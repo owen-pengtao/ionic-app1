@@ -58,7 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    .state('tab.chat-detail', {
+    .state('tab.card-detail', {
       url: '/cards/:cardId',
       views: {
         'tab-cards': {
