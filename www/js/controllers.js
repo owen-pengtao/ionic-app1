@@ -70,12 +70,12 @@ angular.module('starter.controllers', ['starter.services'])
     };
   })
 
-  .controller('FriendsCtrl', function ($scope, Friends) {
-    $scope.friends = Friends.all();
+  .controller('MyCardsCtrl', function ($scope, MyCards) {
+    $scope.myCards = MyCards.all();
   })
 
-  .controller('FriendDetailCtrl', function ($scope, $stateParams, Friends) {
-    $scope.friend = Friends.get($stateParams.friendId);
+  .controller('MyCardDetailCtrl', function ($scope, $stateParams, MyCards) {
+    $scope.myCard = MyCards.get($stateParams.myCardId);
   })
 
   .controller('AccountCtrl', function ($scope) {
