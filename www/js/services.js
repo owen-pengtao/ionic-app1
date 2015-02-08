@@ -1,5 +1,23 @@
 angular.module('starter.services', [])
 
+.factory('User', function() {
+    var user = {
+      id : 0,
+      name : ""
+    };
+    return {
+      set : function(me) {
+        user = me;
+        return user;
+      },
+      get : function() {
+        return user;
+      },
+      isLogin : function() {
+        return user.id ? true : false;
+      }
+    };
+})
 .factory('Cards', function() {
   // Might use a resource here that returns a JSON array
 

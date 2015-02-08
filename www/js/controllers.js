@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['starter.services'])
 
-  .controller('HomeCtrl', function ($scope) {
+  .controller('HomeCtrl', function ($scope, User) {
     "use strict";
     $scope.isLogin = false;
 
@@ -32,7 +32,7 @@ angular.module('starter.controllers', ['starter.services'])
         success: function (user) {
           $scope.isLogin = true;
           $scope.$apply(function () {
-            $scope.user = user;
+            User.set(user);
           });
         }
       });
@@ -50,12 +50,20 @@ angular.module('starter.controllers', ['starter.services'])
     };
   })
 
-  .controller('CardDetailCtrl', function ($scope, $stateParams, Cards, $state, $ionicNavBarDelegate) {
+  .controller('CardDetailCtrl', function ($scope, $stateParams, User, Cards, $state, $ionicNavBarDelegate) {
     $scope.card = Cards.get($stateParams.cardId);
     $scope.myCard = {};
 
     $scope.addCard = function () {
-      var _card = angular.extend($scope.card, $scope.myCard);
+      var _card = {
+        "userID"    : User.id,
+        "bankID"    : $scope.myCard.bankID,
+        "cardType"  : $scope.myCard.cardType,
+        "validDate" : $scope.myCard.validDate,
+        "point"     : $scope.myCard.point,
+        "creditLimit" : $scope.myCard.creditLimit,
+        "aliasName" : $scope.myCard.aliasName
+      };
       Cards.add(_card);
       $ionicNavBarDelegate.back();
       $state.go("tab.friends");
