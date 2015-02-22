@@ -31,7 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
@@ -50,42 +50,44 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.cards', {
-      url: '/cards',
-      views: {
-        'tab-cards': {
-          templateUrl: 'templates/tab-cards.html',
-          controller: 'CardsCtrl'
-        }
+    url: '/cards',
+    views: {
+      'tab-cards': {
+        templateUrl: 'templates/tab-cards.html',
+        controller: 'CardsCtrl'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/cards/:cardId',
-      views: {
-        'tab-cards': {
-          templateUrl: 'templates/card-detail.html',
-          controller: 'CardDetailCtrl'
-        }
-      }
-    })
+    }
+  })
 
-  .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
+  .state('tab.card-detail', {
+    url: '/cards/:cardId',
+    views: {
+      'tab-cards': {
+        templateUrl: 'templates/card-detail.html',
+        controller: 'CardDetailCtrl'
       }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
+    }
+  })
+
+  .state('tab.mycards', {
+    url: '/mycards',
+    views: {
+      'tab-mycards': {
+        templateUrl: 'templates/tab-mycards.html',
+        controller: 'MyCardsCtrl'
       }
-    })
+    }
+  })
+
+  .state('tab.mycard-detail', {
+    url: '/mycards/:myCardId',
+    views: {
+      'tab-mycards': {
+        templateUrl: 'templates/mycard-detail.html',
+        controller: 'MyCardDetailCtrl'
+      }
+    }
+  })
 
   .state('tab.account', {
     url: '/account',

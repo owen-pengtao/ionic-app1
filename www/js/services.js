@@ -1,11 +1,31 @@
 angular.module('starter.services', [])
 
-.factory('User', function() {
+.factory('User', function($http, $q) {
     var user = {
       id : 0,
       name : ""
     };
     return {
+      login: function() {
+        var deferred = $q.defer();
+        var data = {
+          "id"  : 10204913340487808,
+          "name": "Peng Tao"
+        };
+        deferred.resolve(data);
+        return deferred.promise;
+      },
+      login2: function() {
+        var deferred = $q.defer();
+        $http.get("http://i.ypages.com/api.php?m=api_user&a=login&phone_no=15889457465&password=99988811&login_type=1")
+          .success(function (data) {
+            deferred.resolve(data);
+          })
+          .error(function (e, status) {
+            deferred.reject(e, status);
+          });
+        return deferred.promise;
+      },
       set : function(me) {
         user = me;
         return user;
@@ -14,11 +34,12 @@ angular.module('starter.services', [])
         return user;
       },
       isLogin : function() {
+        console.log(user);
         return user.id ? true : false;
       }
     };
 })
-.factory('Cards', function() {
+.factory('Cards', function($http, $q) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -58,7 +79,16 @@ angular.module('starter.services', [])
       return null;
     },
     add: function(card) {
+      var deferred = $q.defer();
+      $http.get("http://i.ypages.com/api.php?m=api_feedback&a=submitFeedback&content=I_Love_It"+ (new Date()) +"&contact=13800138000&uid=1&username=Itotem")
+        .success(function (data) {
+          deferred.resolve(data);
+        })
+        .error(function (e, status) {
+          deferred.reject(e, status);
+        });
       console.log(card);
+      return deferred.promise;
     }
   };
 })
@@ -81,9 +111,9 @@ angular.module('starter.services', [])
     creditLimit : "5000",
     createTime  : "02/07/2015"
   }, {
-    id: 1,
+    id: 2,
     aliasName   : "AMEX Costco",
-    bankID      : 5,
+    bankID      : 2,
     bankName    : "American Express",
     cardType    : "Credit",
     validDate   : "08/2017",
@@ -99,7 +129,7 @@ angular.module('starter.services', [])
     },
     get: function(myCardId) {
       // Simple index lookup
-      return myCards[myCardId];
+      return myCards[myCardId-1];
     }
   };
 });

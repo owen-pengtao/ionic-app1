@@ -5,6 +5,15 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.isLogin = false;
 
     $scope.doLogin = function () {
+      User.login().then(function(data){
+        $scope.isLogin = true;
+        var _user = {
+          id : data.id,
+          name: data.name
+        };
+        $scope.user    = _user;
+        User.set(_user);
+      });
     };
     $scope.fbLogin = function () {
       openFB.login(
@@ -31,6 +40,7 @@ angular.module('starter.controllers', ['starter.services'])
         params: {fields: 'id,name'},
         success: function (user) {
           $scope.isLogin = true;
+          $scope.user    = user;
           $scope.$apply(function () {
             User.set(user);
           });
@@ -64,9 +74,11 @@ angular.module('starter.controllers', ['starter.services'])
         "creditLimit" : $scope.myCard.creditLimit,
         "aliasName" : $scope.myCard.aliasName
       };
-      Cards.add(_card);
-      $ionicNavBarDelegate.back();
-      $state.go("tab.friends");
+      Cards.add(_card).then(function(resData, status){
+        debugger;
+        $ionicNavBarDelegate.back();
+        $state.go("tab.mycards");
+      });
     };
   })
 

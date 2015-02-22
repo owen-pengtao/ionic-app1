@@ -1,59 +1,97 @@
 angular.module('starter.controllers', ['starter.services'])
 
-.controller('HomeCtrl', function($scope) {
+  .controller('HomeCtrl', function ($scope, User) {
     "use strict";
     $scope.isLogin = false;
 
-    $scope.doLogin = function(){};
-    $scope.fbLogin = function() {
+    $scope.doLogin = function () {
+      User.login().then(function(data){
+        $scope.isLogin = true;
+        var _user = {
+          id : data.id,
+          name: data.name
+        };
+        $scope.user    = _user;
+        User.set(_user);
+      });
+    };
+    $scope.fbLogin = function () {
       openFB.login(
-        function(response) {
+        function (response) {
           if (response.status === 'connected') {
             console.log('Facebook login succeeded');
             $scope.isLogin = true;
+            $scope.getMe();
           } else {
             alert('Facebook login failed');
           }
         },
         {scope: 'email,publish_actions'});
     };
-    $scope.getMe = function() {
+    $scope.fbLogout = function () {
+      openFB.logout(
+        function () {
+          $scope.isLogin = false;
+        });
+    };
+    $scope.getMe = function () {
       openFB.api({
         path: '/me',
         params: {fields: 'id,name'},
-        success: function(user) {
-          $scope.$apply(function() {
-            $scope.user = user;
+        success: function (user) {
+          $scope.isLogin = true;
+          $scope.user    = user;
+          $scope.$apply(function () {
+            User.set(user);
           });
-        },
-        error: function(error) {
-          alert('Facebook error: ' + error.error_description);
         }
       });
     };
-})
+    $scope.getMe();
+  })
 
-.controller('CardsCtrl', function($scope, Cards) {
-  $scope.cards = Cards.all();
-  $scope.remove = function(card) {
-    Cards.remove(card);
-  }
-})
+  .controller('CardsCtrl', function ($scope, Cards, $state) {
+    $scope.cards = Cards.all();
+    $scope.remove = function (card) {
+      Cards.remove(card);
+    };
+    $scope.onTabSelected = function(){
+      $state.go("tab.cards");
+    };
+  })
 
-.controller('CardDetailCtrl', function($scope, $stateParams, Cards) {
-  $scope.card = Cards.get($stateParams.cardId);
-})
+  .controller('CardDetailCtrl', function ($scope, $stateParams, User, Cards, $state, $ionicNavBarDelegate) {
+    $scope.card = Cards.get($stateParams.cardId);
+    $scope.myCard = {};
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
+    $scope.addCard = function () {
+      var _card = {
+        "userID"    : User.id,
+        "bankID"    : $scope.myCard.bankID,
+        "cardType"  : $scope.myCard.cardType,
+        "validDate" : $scope.myCard.validDate,
+        "point"     : $scope.myCard.point,
+        "creditLimit" : $scope.myCard.creditLimit,
+        "aliasName" : $scope.myCard.aliasName
+      };
+      Cards.add(_card).then(function(resData, status){
+        debugger;
+        $ionicNavBarDelegate.back();
+        $state.go("tab.mycards");
+      });
+    };
+  })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
+  .controller('MyCardsCtrl', function ($scope, MyCards) {
+    $scope.myCards = MyCards.all();
+  })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+  .controller('MyCardDetailCtrl', function ($scope, $stateParams, MyCards) {
+    $scope.myCard = MyCards.get($stateParams.myCardId);
+  })
+
+  .controller('AccountCtrl', function ($scope) {
+    $scope.settings = {
+      enableFriends: true
+    };
+  });
