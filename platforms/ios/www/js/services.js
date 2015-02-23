@@ -111,9 +111,9 @@ angular.module('starter.services', [])
     creditLimit : "5000",
     createTime  : "02/07/2015"
   }, {
-    id: 1,
+    id: 2,
     aliasName   : "AMEX Costco",
-    bankID      : 5,
+    bankID      : 2,
     bankName    : "American Express",
     cardType    : "Credit",
     validDate   : "08/2017",
@@ -129,7 +129,7 @@ angular.module('starter.services', [])
     },
     get: function(myCardId) {
       // Simple index lookup
-      return myCards[myCardId];
+      return myCards[myCardId-1];
     }
   };
 });
